@@ -1,0 +1,60 @@
+<%- include('partials/header') %>
+
+<section class="page-hero page-hero--brown">
+  <div class="page-hero-bg">
+    <img src="/images/hero-bg-03.webp" alt="<%= t.galeria.hero_title %>" />
+    <div class="page-hero-overlay"></div>
+  </div>
+  <div class="container">
+    <span class="section-tag"><%= t.galeria.page_tag %></span>
+    <h1><%= t.galeria.hero_title %></h1>
+    <p><%= t.galeria.hero_desc %></p>
+  </div>
+</section>
+
+<section class="section-padded">
+  <div class="container">
+    <p class="section-intro"><%= t.galeria.intro %></p>
+
+    <div class="gallery-grid">
+      <div class="gallery-card">
+        <div class="gallery-img">
+          <img src="/images/Chokkan.webp" alt="<%= t.galeria.chokkan_title %>" />
+        </div>
+        <div class="gallery-info">
+          <h3><%= t.galeria.chokkan_title %></h3>
+          <p><%= t.galeria.chokkan_desc %></p>
+          <span class="gallery-tag"><%= t.galeria.chokkan_tag %></span>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="gallery-img">
+          <img src="/images/Shakkan.webp" alt="<%= t.galeria.shakkan_title %>" />
+        </div>
+        <div class="gallery-info">
+          <h3><%= t.galeria.shakkan_title %></h3>
+          <p><%= t.galeria.shakkan_desc %></p>
+          <span class="gallery-tag"><%= t.galeria.shakkan_tag %></span>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="gallery-img">
+          <img src="/images/Kengai.webp" alt="<%= t.galeria.kengai_title %>" />
+        </div>
+        <div class="gallery-info">
+          <h3><%= t.galeria.kengai_title %></h3>
+          <p><%= t.galeria.kengai_desc %></p>
+          <span class="gallery-tag"><%= t.galeria.kengai_tag %></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-quote">
+      <blockquote><%= t.galeria.quote %></blockquote>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

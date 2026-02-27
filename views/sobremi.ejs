@@ -1,0 +1,46 @@
+<%- include('partials/header') %>
+
+<section class="page-hero page-hero--green">
+  <div class="page-hero-bg">
+    <img src="/images/hero-bg-02.webp" alt="<%= t.sobremi.hero_title %>" />
+    <div class="page-hero-overlay"></div>
+  </div>
+  <div class="container">
+    <span class="section-tag"><%= t.sobremi.page_tag %></span>
+    <h1><%= t.sobremi.hero_title %></h1>
+    <p><%= t.sobremi.hero_desc %></p>
+  </div>
+</section>
+
+<section class="section-padded">
+  <div class="container container--narrow">
+    <div class="story-block">
+      <h2><%= t.sobremi.h2_historia %></h2>
+      <p><%= t.sobremi.historia_p1 %></p>
+      <p><%= t.sobremi.historia_p2 %></p>
+      <p><%= t.sobremi.historia_p3 %></p>
+    </div>
+
+    <div class="story-block">
+      <h2><%= t.sobremi.h2_filosofia %></h2>
+      <p><%= t.sobremi.filosofia_p1 %></p>
+      <p><%= t.sobremi.filosofia_p2 %></p>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-pill"><span><%= t.sobremi.val_paciencia %></span></div>
+      <div class="value-pill"><span><%= t.sobremi.val_disciplina %></span></div>
+      <div class="value-pill"><span><%= t.sobremi.val_perseverancia %></span></div>
+      <div class="value-pill"><span><%= t.sobremi.val_amor %></span></div>
+      <div class="value-pill"><span><%= t.sobremi.val_naturaleza %></span></div>
+      <div class="value-pill"><span><%= t.sobremi.val_equilibrio %></span></div>
+    </div>
+
+    <div class="cta-block">
+      <p><%= t.sobremi.cta_p %></p>
+      <a href="/contacto" class="btn btn-primary"><%= t.sobremi.cta_btn %></a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

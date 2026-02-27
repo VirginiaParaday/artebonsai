@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1772171208239,
+    "nombre": "Midudev",
+    "fecha": "27 de febrero de 2026",
+    "disenio": 4,
+    "navegacion": 5,
+    "contenido": 4,
+    "velocidad": 5,
+    "presentacion": 5,
+    "general": 5,
+    "promedio": "4.7"
+  },
+  {
+    "id": 1772166246230,
+    "nombre": "Elon Musk",
+    "fecha": "26 de febrero de 2026",
+    "disenio": 6,
+    "navegacion": 5,
+    "contenido": 4,
+    "velocidad": 5,
+    "presentacion": 4,
+    "general": 5,
+    "promedio": "4.8"
+  },
+  {
+    "id": 1772155384725,
+    "nombre": "Carlos Mauricio",
+    "fecha": "24 de febrero de 2026",
+    "disenio": 6,
+    "navegacion": 6,
+    "contenido": 5,
+    "velocidad": 5,
+    "presentacion": 5,
+    "general": 6,
+    "promedio": "5.5"
+  }
+]

@@ -1,0 +1,108 @@
+<%- include('partials/header') %>
+
+<section class="page-hero page-hero--earth">
+  <div class="page-hero-bg">
+    <img src="/images/hero-bg-04.webp" alt="<%= t.guias.hero_title %>" />
+    <div class="page-hero-overlay"></div>
+  </div>
+  <div class="container">
+    <span class="section-tag"><%= t.guias.page_tag %></span>
+    <h1><%= t.guias.hero_title %></h1>
+    <p><%= t.guias.hero_desc %></p>
+  </div>
+</section>
+
+<section class="section-padded">
+  <div class="container">
+    <h2 class="section-title"><%= t.guias.tecnicas_title %></h2>
+    <div class="techniques-grid">
+
+      <div class="technique-card">
+        <div class="technique-header">
+          <span class="technique-icon">💧</span>
+          <h3><%= t.guias.riego_title %></h3>
+        </div>
+        <p><%= t.guias.riego_desc %></p>
+        <ul class="tip-list">
+          <li><%= t.guias.riego_t1 %></li>
+          <li><%= t.guias.riego_t2 %></li>
+          <li><%= t.guias.riego_t3 %></li>
+        </ul>
+      </div>
+
+      <div class="technique-card">
+        <div class="technique-header">
+          <span class="technique-icon">✂️</span>
+          <h3><%= t.guias.poda_title %></h3>
+        </div>
+        <p><%= t.guias.poda_desc %></p>
+        <ul class="tip-list">
+          <li><strong><%= t.guias.poda_t1_b %></strong> <%= t.guias.poda_t1 %></li>
+          <li><strong><%= t.guias.poda_t2_b %></strong> <%= t.guias.poda_t2 %></li>
+          <li><%= t.guias.poda_t3 %></li>
+        </ul>
+      </div>
+
+      <div class="technique-card">
+        <div class="technique-header">
+          <span class="technique-icon">🔧</span>
+          <h3><%= t.guias.alambrado_title %></h3>
+        </div>
+        <p><%= t.guias.alambrado_desc %></p>
+        <ul class="tip-list">
+          <li><%= t.guias.alambrado_t1 %></li>
+          <li><%= t.guias.alambrado_t2 %></li>
+          <li><%= t.guias.alambrado_t3 %></li>
+        </ul>
+      </div>
+
+      <div class="technique-card">
+        <div class="technique-header">
+          <span class="technique-icon">🍃</span>
+          <h3><%= t.guias.trasplante_title %></h3>
+        </div>
+        <p><%= t.guias.trasplante_desc %></p>
+        <ul class="tip-list">
+          <li><%= t.guias.trasplante_t1 %></li>
+          <li><%= t.guias.trasplante_t2 %></li>
+          <li><%= t.guias.trasplante_t3 %></li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="section-title"><%= t.guias.herramientas_title %></h2>
+    <div class="tools-grid">
+      <div class="tool-item"><span class="tool-icon">✂️</span><span><%= t.guias.h1 %></span></div>
+      <div class="tool-item"><span class="tool-icon">🔩</span><span><%= t.guias.h2 %></span></div>
+      <div class="tool-item"><span class="tool-icon">🥢</span><span><%= t.guias.h3 %></span></div>
+      <div class="tool-item"><span class="tool-icon">🪥</span><span><%= t.guias.h4 %></span></div>
+      <div class="tool-item"><span class="tool-icon">🚿</span><span><%= t.guias.h5 %></span></div>
+    </div>
+
+    <h2 class="section-title"><%= t.guias.especies_title %></h2>
+    <div class="species-grid">
+      <div class="species-card">
+        <h3><%= t.guias.ficus_title %></h3>
+        <span class="species-level"><%= t.guias.ficus_level %></span>
+        <p><%= t.guias.ficus_desc %></p>
+      </div>
+      <div class="species-card">
+        <h3><%= t.guias.pino_title %></h3>
+        <span class="species-level"><%= t.guias.pino_level %></span>
+        <p><%= t.guias.pino_desc %></p>
+      </div>
+      <div class="species-card">
+        <h3><%= t.guias.olmo_title %></h3>
+        <span class="species-level"><%= t.guias.olmo_level %></span>
+        <p><%= t.guias.olmo_desc %></p>
+      </div>
+      <div class="species-card">
+        <h3><%= t.guias.arce_title %></h3>
+        <span class="species-level"><%= t.guias.arce_level %></span>
+        <p><%= t.guias.arce_desc %></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

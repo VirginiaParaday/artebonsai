@@ -1,0 +1,119 @@
+<%- include('partials/header') %>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="/images/hero-bg-01.webp" alt="Bonsái" />
+    <div class="hero-bg-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-content-overlay"></div>
+    <span class="hero-label"><%= t.index.hero_label %></span>
+    <h1 class="hero-title"><%= t.index.hero_title %><br /><em><%- t.index.hero_title_em %></em></h1>
+    <p class="hero-sub"><%= t.index.hero_sub %></p>
+    <div class="hero-actions">
+      <a href="/galeria" class="btn btn-primary"><%= t.index.hero_btn_galeria %></a>
+      <a href="/sobre-mi" class="btn btn-outline"><%= t.index.hero_btn_historia %></a>
+    </div>
+  </div>
+  <div class="hero-image-wrap">
+    <div class="hero-placeholder">
+      <svg viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- Maceta -->
+        <rect x="70" y="230" width="60" height="30" rx="4" fill="#8B6914" />
+        <rect x="65" y="220" width="70" height="15" rx="3" fill="#A0792E" />
+        <!-- Tierra -->
+        <ellipse cx="100" cy="220" rx="35" ry="8" fill="#5a3e1b" />
+        <!-- Tronco -->
+        <path d="M100 220 Q95 180 90 150 Q85 120 88 100" stroke="#5a3e1b" stroke-width="8" fill="none" stroke-linecap="round" />
+        <!-- Ramas -->
+        <path d="M90 150 Q70 135 55 125" stroke="#6b4c22" stroke-width="5" fill="none" stroke-linecap="round" />
+        <path d="M88 120 Q110 105 125 95" stroke="#6b4c22" stroke-width="4" fill="none" stroke-linecap="round" />
+        <path d="M90 160 Q75 155 65 145" stroke="#6b4c22" stroke-width="4" fill="none" stroke-linecap="round" />
+        <!-- Follaje -->
+        <circle cx="88" cy="92" r="28" fill="#2d6a3f" opacity="0.9" />
+        <circle cx="55" cy="118" r="22" fill="#3a7d4f" opacity="0.85" />
+        <circle cx="128" cy="88" r="20" fill="#2a5e38" opacity="0.88" />
+        <circle cx="68" cy="138" r="16" fill="#4a8f5e" opacity="0.8" />
+        <circle cx="100" cy="80" r="18" fill="#35703f" />
+        <circle cx="75" cy="78" r="14" fill="#2d6a3f" opacity="0.7" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Presentación -->
+<section class="intro section-padded">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <span class="section-tag"><%= t.index.intro_tag %></span>
+        <h2><%= t.index.intro_title %></h2>
+        <p><%- t.index.intro_p1 %></p>
+        <p><%= t.index.intro_p2 %></p>
+        <a href="/sobre-mi" class="btn btn-primary"><%= t.index.intro_btn %></a>
+      </div>
+      <div class="intro-values">
+        <div class="value-card">
+          <span class="value-icon">🧘</span>
+          <h3><%= t.index.val_paciencia %></h3>
+          <p><%= t.index.val_paciencia_desc %></p>
+        </div>
+        <div class="value-card">
+          <span class="value-icon">💪</span>
+          <h3><%= t.index.val_disciplina %></h3>
+          <p><%= t.index.val_disciplina_desc %></p>
+        </div>
+        <div class="value-card">
+          <span class="value-icon">🌱</span>
+          <h3><%= t.index.val_naturaleza %></h3>
+          <p><%= t.index.val_naturaleza_desc %></p>
+        </div>
+        <div class="value-card">
+          <span class="value-icon">❤️</span>
+          <h3><%= t.index.val_amor %></h3>
+          <p><%= t.index.val_amor_desc %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Accesos rápidos -->
+<section class="quick-links section-padded bg-light">
+  <div class="container">
+    <h2 class="section-title center"><%= t.index.quick_title %></h2>
+    <div class="cards-grid">
+      <a href="/galeria" class="card-link">
+        <div class="card">
+          <span class="card-icon">🖼️</span>
+          <h3><%= t.index.quick_galeria %></h3>
+          <p><%= t.index.quick_galeria_desc %></p>
+        </div>
+      </a>
+      <a href="/guias" class="card-link">
+        <div class="card">
+          <span class="card-icon">📖</span>
+          <h3><%= t.index.quick_guias %></h3>
+          <p><%= t.index.quick_guias_desc %></p>
+        </div>
+      </a>
+      <a href="/blog" class="card-link">
+        <div class="card">
+          <span class="card-icon">✍️</span>
+          <h3><%= t.index.quick_blog %></h3>
+          <p><%= t.index.quick_blog_desc %></p>
+        </div>
+      </a>
+      <a href="/recursos" class="card-link">
+        <div class="card">
+          <span class="card-icon">📚</span>
+          <h3><%= t.index.quick_recursos %></h3>
+          <p><%= t.index.quick_recursos_desc %></p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

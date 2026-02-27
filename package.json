@@ -1,0 +1,34 @@
+{
+  "name": "bonsai-personal",
+  "version": "1.0.0",
+  "description": "Página web personal sobre bonsái - Carlos Mauricio Martínez Sarmiento",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "sync": "browser-sync start --proxy localhost:3000 --files \"views/**/*.ejs\" \"public/css/*.css\" \"public/js/*.js\" --port 3001 --no-open"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "nodemailer": "^8.0.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.3",
+    "nodemon": "^3.1.14"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "views",
+      "public",
+      "routes",
+      "app.js"
+    ],
+    "ext": "js,ejs,css,json",
+    "ignore": [
+      "node_modules"
+    ]
+  }
+}

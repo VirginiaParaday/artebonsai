@@ -1,0 +1,109 @@
+<%- include('partials/header') %>
+
+<section class="page-hero page-hero--earth">
+  <div class="page-hero-bg">
+    <img src="/images/hero-bg-07.webp" alt="<%= t.contacto.hero_title %>" />
+    <div class="page-hero-overlay"></div>
+  </div>
+  <div class="container">
+    <span class="section-tag"><%= t.contacto.page_tag %></span>
+    <h1><%= t.contacto.hero_title %></h1>
+    <p><%= t.contacto.hero_desc %></p>
+  </div>
+</section>
+
+<section class="section-padded">
+  <div class="container container--narrow">
+
+    <% if (locals.success) { %>
+    <div class="alert alert-success">
+      <%- t.contacto.success.replace('{nombre}', success.nombre) %>
+    </div>
+    <% } %>
+
+    <div class="contact-intro">
+      <p><%= t.contacto.intro_p %></p>
+    </div>
+
+    <form class="contact-form" action="/contacto" method="POST" id="contactForm" novalidate>
+
+      <div class="form-group">
+        <label for="nombre"><%= t.contacto.label_nombre %> <span class="required">*</span></label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="<%= t.contacto.placeholder_nombre %>"
+          value="<%= locals.formData ? formData.nombre : '' %>"
+          required
+          minlength="2"
+          maxlength="80"
+          onkeydown="if(event.key===' ' && (this.value==='' || this.value.slice(-1)===' '))event.preventDefault()"
+          onpaste="setTimeout(()=>{ this.value=this.value.replace(/^\s+/,'').replace(/\s{2,}/g,' ') },0)"
+          oninput="this.value=this.value.replace(/^\s+/,'').replace(/\s{2,}/g,' '); this.value=this.value.replace(/\b\w/g, l=>l.toUpperCase()).replace(/(\S)\p{Lu}/gu, (m,p)=>p+m[1].toLowerCase())"
+        />
+        <% if (locals.errors && errors.nombre) { %>
+          <span class="form-error"><%= errors.nombre %></span>
+        <% } %>
+      </div>
+
+      <div class="form-group">
+        <label for="correo"><%= t.contacto.label_correo %> <span class="optional"><%= t.contacto.correo_opcional %></span></label>
+        <input
+          type="email"
+          id="correo"
+          name="correo"
+          placeholder="<%= t.contacto.placeholder_correo %>"
+          value="<%= locals.formData ? formData.correo : '' %>"
+          onkeydown="if(event.key===' ')event.preventDefault()"
+          onpaste="this.value=this.value.replace(/\s/g,'')"
+        />
+        <% if (locals.errors && errors.correo) { %>
+          <span class="form-error"><%= errors.correo %></span>
+        <% } %>
+      </div>
+
+      <div class="form-group">
+        <label for="mensaje"><%= t.contacto.label_mensaje %> <span class="required">*</span></label>
+        <textarea
+          id="mensaje"
+          name="mensaje"
+          rows="6"
+          placeholder="<%= t.contacto.placeholder_mensaje %>"
+          required
+          minlength="10"
+          maxlength="1000"
+        ><%= locals.formData ? formData.mensaje : '' %></textarea>
+        <% if (locals.errors && errors.mensaje) { %>
+          <span class="form-error"><%= errors.mensaje %></span>
+        <% } %>
+        <span class="char-counter" id="charCounter">0 / 1000</span>
+      </div>
+
+      <div class="form-group checkbox-group">
+        <label class="checkbox-label">
+          <input type="checkbox" id="enviarCopia" name="enviarCopia" value="si" />
+          <span><%= t.contacto.copia_label %></span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-full">
+        <%= t.contacto.btn_enviar %>
+      </button>
+
+    </form>
+
+  </div>
+</section>
+
+<script>
+const textarea = document.getElementById('mensaje');
+const counter = document.getElementById('charCounter');
+if (textarea && counter) {
+  textarea.addEventListener('input', () => {
+    counter.textContent = `${textarea.value.length} / 1000`;
+  });
+}
+</script>
+
+<%- include('partials/footer') %>

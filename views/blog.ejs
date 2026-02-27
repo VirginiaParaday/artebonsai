@@ -1,0 +1,81 @@
+<%- include('partials/header') %>
+
+<section class="page-hero page-hero--green">
+  <div class="page-hero-bg">
+    <img src="/images/hero-bg-05.webp" alt="<%= t.blog.hero_title %>" />
+    <div class="page-hero-overlay"></div>
+  </div>
+  <div class="container">
+    <span class="section-tag"><%= t.blog.page_tag %></span>
+    <h1><%= t.blog.hero_title %></h1>
+    <p><%= t.blog.hero_desc %></p>
+  </div>
+</section>
+
+<section class="section-padded">
+  <div class="container">
+    <div class="blog-grid">
+
+      <article class="blog-post featured">
+        <div class="post-meta">
+          <span class="post-date"><%= t.blog.post1_date %></span>
+          <span class="post-tag"><%= t.blog.post1_tag %></span>
+        </div>
+        <h2><%= t.blog.post1_title %></h2>
+        <p><%= t.blog.post1_p1 %></p>
+        <p><%= t.blog.post1_p2 %></p>
+        <a href="#" class="read-more"><%= t.blog.read_more %></a>
+      </article>
+
+      <article class="blog-post">
+        <div class="post-meta">
+          <span class="post-date"><%= t.blog.post2_date %></span>
+          <span class="post-tag"><%= t.blog.post2_tag %></span>
+        </div>
+        <h2><%= t.blog.post2_title %></h2>
+        <p><%= t.blog.post2_p %></p>
+        <a href="#" class="read-more"><%= t.blog.read_more %></a>
+      </article>
+
+      <article class="blog-post">
+        <div class="post-meta">
+          <span class="post-date"><%= t.blog.post3_date %></span>
+          <span class="post-tag"><%= t.blog.post3_tag %></span>
+        </div>
+        <h2><%= t.blog.post3_title %></h2>
+        <p><%= t.blog.post3_p %></p>
+        <a href="#" class="read-more"><%= t.blog.read_more %></a>
+      </article>
+
+      <article class="blog-post">
+        <div class="post-meta">
+          <span class="post-date"><%= t.blog.post4_date %></span>
+          <span class="post-tag"><%= t.blog.post4_tag %></span>
+        </div>
+        <h2><%= t.blog.post4_title %></h2>
+        <p><%= t.blog.post4_p %></p>
+        <a href="#" class="read-more"><%= t.blog.read_more %></a>
+      </article>
+
+      <article class="blog-post">
+        <div class="post-meta">
+          <span class="post-date"><%= t.blog.post5_date %></span>
+          <span class="post-tag"><%= t.blog.post5_tag %></span>
+        </div>
+        <h2><%= t.blog.post5_title %></h2>
+        <p><%= t.blog.post5_p %></p>
+        <a href="#" class="read-more"><%= t.blog.read_more %></a>
+      </article>
+
+    </div>
+
+    <div class="blog-quote-block">
+      <blockquote>
+        <%= t.blog.quote %>
+        <cite><%= t.blog.quote_attr %></cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,233 @@
+<%- include('partials/header') %>
+
+<section class="page-hero page-hero--green">
+  <div class="page-hero-bg">
+    <img src="/images/hero-bg-08.webp" alt="<%= t.califica.hero_title %>" />
+    <div class="page-hero-overlay"></div>
+  </div>
+  <div class="container">
+    <span class="section-tag"><%= t.califica.page_tag %></span>
+    <h1><%= t.califica.hero_title %></h1>
+    <p><%= t.califica.hero_desc %></p>
+  </div>
+</section>
+
+<section class="section-padded">
+  <div class="container container--narrow">
+
+    <div class="califica-intro">
+      <p><%- t.califica.intro_p %></p>
+      <div class="califica-escala">
+        <span><%= t.califica.escala_min %></span>
+        <span><%= t.califica.escala_max %></span>
+      </div>
+    </div>
+
+    <% if (locals.success) { %>
+    <div class="alert alert-success">
+      <%- t.califica.success.replace('{nombre}', success.nombre) %>
+    </div>
+    <% } %>
+
+    <% if (locals.errors && errors.general) { %>
+    <div class="alert alert-error"><%= errors.general %></div>
+    <% } %>
+
+    <form class="califica-form" action="/califica" method="POST" id="calificaForm">
+
+      <div class="form-group">
+        <label for="nombre"><%= t.califica.label_nombre %> <span class="required">*</span></label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="<%= t.califica.placeholder_nombre %>"
+          value="<%= locals.formData ? formData.nombre : '' %>"
+          required
+          maxlength="80"
+          oninput="this.value=this.value.replace(/^\s+/,'').replace(/\s{2,}/g,' ').replace(/\b([a-záéíóúüñA-ZÁÉÍÓÚÜÑ])(\S*)/g,(_,f,r)=>f.toUpperCase()+r.toLowerCase())"
+          onkeydown="if(event.key===' '&&(this.value===''||this.value.slice(-1)===' '))event.preventDefault()"
+        />
+        <% if (locals.errors && errors.nombre) { %>
+          <span class="form-error"><%= errors.nombre %></span>
+        <% } %>
+      </div>
+
+      <div class="estrellas-grid">
+
+        <div class="estrella-item">
+          <div class="estrella-header">
+            <span class="estrella-icon">🌿</span>
+            <div>
+              <h3><%= t.califica.d1_title %></h3>
+              <p><%= t.califica.d1_desc %></p>
+            </div>
+          </div>
+          <div class="star-rating" data-name="disenio">
+            <% for(let i=1; i<=6; i++) { %>
+              <input type="radio" name="disenio" id="disenio-<%= i %>" value="<%= i %>"
+                <%= locals.formData && formData.disenio == i ? 'checked' : '' %> />
+              <label for="disenio-<%= i %>">★</label>
+            <% } %>
+          </div>
+          <% if (locals.errors && errors.disenio) { %>
+            <span class="form-error"><%= errors.disenio %></span>
+          <% } %>
+        </div>
+
+        <div class="estrella-item">
+          <div class="estrella-header">
+            <span class="estrella-icon">🧭</span>
+            <div>
+              <h3><%= t.califica.d2_title %></h3>
+              <p><%= t.califica.d2_desc %></p>
+            </div>
+          </div>
+          <div class="star-rating" data-name="navegacion">
+            <% for(let i=1; i<=6; i++) { %>
+              <input type="radio" name="navegacion" id="navegacion-<%= i %>" value="<%= i %>"
+                <%= locals.formData && formData.navegacion == i ? 'checked' : '' %> />
+              <label for="navegacion-<%= i %>">★</label>
+            <% } %>
+          </div>
+          <% if (locals.errors && errors.navegacion) { %>
+            <span class="form-error"><%= errors.navegacion %></span>
+          <% } %>
+        </div>
+
+        <div class="estrella-item">
+          <div class="estrella-header">
+            <span class="estrella-icon">📚</span>
+            <div>
+              <h3><%= t.califica.d3_title %></h3>
+              <p><%= t.califica.d3_desc %></p>
+            </div>
+          </div>
+          <div class="star-rating" data-name="contenido">
+            <% for(let i=1; i<=6; i++) { %>
+              <input type="radio" name="contenido" id="contenido-<%= i %>" value="<%= i %>"
+                <%= locals.formData && formData.contenido == i ? 'checked' : '' %> />
+              <label for="contenido-<%= i %>">★</label>
+            <% } %>
+          </div>
+          <% if (locals.errors && errors.contenido) { %>
+            <span class="form-error"><%= errors.contenido %></span>
+          <% } %>
+        </div>
+
+        <div class="estrella-item">
+          <div class="estrella-header">
+            <span class="estrella-icon">⚡</span>
+            <div>
+              <h3><%= t.califica.d4_title %></h3>
+              <p><%= t.califica.d4_desc %></p>
+            </div>
+          </div>
+          <div class="star-rating" data-name="velocidad">
+            <% for(let i=1; i<=6; i++) { %>
+              <input type="radio" name="velocidad" id="velocidad-<%= i %>" value="<%= i %>"
+                <%= locals.formData && formData.velocidad == i ? 'checked' : '' %> />
+              <label for="velocidad-<%= i %>">★</label>
+            <% } %>
+          </div>
+          <% if (locals.errors && errors.velocidad) { %>
+            <span class="form-error"><%= errors.velocidad %></span>
+          <% } %>
+        </div>
+
+        <div class="estrella-item">
+          <div class="estrella-header">
+            <span class="estrella-icon">🎨</span>
+            <div>
+              <h3><%= t.califica.d5_title %></h3>
+              <p><%= t.califica.d5_desc %></p>
+            </div>
+          </div>
+          <div class="star-rating" data-name="presentacion">
+            <% for(let i=1; i<=6; i++) { %>
+              <input type="radio" name="presentacion" id="presentacion-<%= i %>" value="<%= i %>"
+                <%= locals.formData && formData.presentacion == i ? 'checked' : '' %> />
+              <label for="presentacion-<%= i %>">★</label>
+            <% } %>
+          </div>
+          <% if (locals.errors && errors.presentacion) { %>
+            <span class="form-error"><%= errors.presentacion %></span>
+          <% } %>
+        </div>
+
+        <div class="estrella-item">
+          <div class="estrella-header">
+            <span class="estrella-icon">💚</span>
+            <div>
+              <h3><%= t.califica.d6_title %></h3>
+              <p><%= t.califica.d6_desc %></p>
+            </div>
+          </div>
+          <div class="star-rating" data-name="general">
+            <% for(let i=1; i<=6; i++) { %>
+              <input type="radio" name="general" id="general-<%= i %>" value="<%= i %>"
+                <%= locals.formData && formData.general == i ? 'checked' : '' %> />
+              <label for="general-<%= i %>">★</label>
+            <% } %>
+          </div>
+          <% if (locals.errors && errors.general) { %>
+            <span class="form-error"><%= errors.general %></span>
+          <% } %>
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-full"><%= t.califica.btn_guardar %></button>
+
+    </form>
+
+    <% if (calificaciones && calificaciones.length > 0) { %>
+    <div class="calificaciones-lista">
+      <h2 class="section-title"><%= t.califica.lista_title %></h2>
+      <div class="calificaciones-grid">
+        <% calificaciones.forEach(c => { %>
+        <div class="calificacion-card">
+          <div class="calificacion-header">
+            <span class="calificacion-nombre"><%= c.nombre %></span>
+            <span class="calificacion-fecha"><%= c.fecha %></span>
+          </div>
+          <div class="calificacion-promedio">
+            <span class="promedio-num"><%= c.promedio %></span>
+            <span class="promedio-label"><%= t.califica.promedio_label %></span>
+          </div>
+          <div class="calificacion-detalle">
+            <div class="detalle-item">
+              <span><%= t.califica.det_disenio %></span>
+              <span class="estrellas-mini"><%= '★'.repeat(c.disenio) %><%= '☆'.repeat(6-c.disenio) %></span>
+            </div>
+            <div class="detalle-item">
+              <span><%= t.califica.det_navegacion %></span>
+              <span class="estrellas-mini"><%= '★'.repeat(c.navegacion) %><%= '☆'.repeat(6-c.navegacion) %></span>
+            </div>
+            <div class="detalle-item">
+              <span><%= t.califica.det_contenido %></span>
+              <span class="estrellas-mini"><%= '★'.repeat(c.contenido) %><%= '☆'.repeat(6-c.contenido) %></span>
+            </div>
+            <div class="detalle-item">
+              <span><%= t.califica.det_velocidad %></span>
+              <span class="estrellas-mini"><%= '★'.repeat(c.velocidad) %><%= '☆'.repeat(6-c.velocidad) %></span>
+            </div>
+            <div class="detalle-item">
+              <span><%= t.califica.det_presentacion %></span>
+              <span class="estrellas-mini"><%= '★'.repeat(c.presentacion) %><%= '☆'.repeat(6-c.presentacion) %></span>
+            </div>
+            <div class="detalle-item">
+              <span><%= t.califica.det_general %></span>
+              <span class="estrellas-mini"><%= '★'.repeat(c.general) %><%= '☆'.repeat(6-c.general) %></span>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+    <% } %>
+
+  </div>
+</section>
+
+<%- include('partials/footer') %>

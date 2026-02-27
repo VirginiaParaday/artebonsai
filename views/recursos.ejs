@@ -1,0 +1,110 @@
+<%- include('partials/header') %>
+
+<section class="page-hero page-hero--brown">
+  <div class="page-hero-bg">
+    <img src="/images/hero-bg-06.webp" alt="<%= t.recursos.hero_title %>" />
+    <div class="page-hero-overlay"></div>
+  </div>
+  <div class="container">
+    <span class="section-tag"><%= t.recursos.page_tag %></span>
+    <h1><%= t.recursos.hero_title %></h1>
+    <p><%= t.recursos.hero_desc %></p>
+  </div>
+</section>
+
+<section class="section-padded">
+  <div class="container">
+    <div class="resources-grid">
+
+      <div class="resource-section">
+        <h2><%= t.recursos.libros_title %></h2>
+        <div class="resource-list">
+          <div class="resource-item">
+            <div class="resource-icon">📖</div>
+            <div class="resource-info">
+              <h3><%= t.recursos.libro1_title %></h3>
+              <p class="resource-author"><%= t.recursos.libro1_author %></p>
+              <p><%= t.recursos.libro1_desc %></p>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon">📖</div>
+            <div class="resource-info">
+              <h3><%= t.recursos.libro2_title %></h3>
+              <p class="resource-author"><%= t.recursos.libro2_author %></p>
+              <p><%= t.recursos.libro2_desc %></p>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon">📖</div>
+            <div class="resource-info">
+              <h3><%= t.recursos.libro3_title %></h3>
+              <p class="resource-author"><%= t.recursos.libro3_author %></p>
+              <p><%= t.recursos.libro3_desc %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="resource-section">
+        <h2><%= t.recursos.videos_title %></h2>
+        <div class="resource-list">
+          <div class="resource-item">
+            <div class="resource-icon">▶️</div>
+            <div class="resource-info">
+              <h3><%= t.recursos.video1_title %></h3>
+              <p class="resource-author"><%= t.recursos.video1_author %></p>
+              <p><%= t.recursos.video1_desc %></p>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon">▶️</div>
+            <div class="resource-info">
+              <h3><%= t.recursos.video2_title %></h3>
+              <p class="resource-author"><%= t.recursos.video2_author %></p>
+              <p><%= t.recursos.video2_desc %></p>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon">▶️</div>
+            <div class="resource-info">
+              <h3><%= t.recursos.video3_title %></h3>
+              <p class="resource-author"><%= t.recursos.video3_author %></p>
+              <p><%= t.recursos.video3_desc %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="resource-section">
+        <h2><%= t.recursos.comunidades_title %></h2>
+        <div class="resource-list">
+          <div class="resource-item">
+            <div class="resource-icon">👥</div>
+            <div class="resource-info">
+              <h3><%= t.recursos.com1_title %></h3>
+              <p><%= t.recursos.com1_desc %></p>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon">👥</div>
+            <div class="resource-info">
+              <h3><%= t.recursos.com2_title %></h3>
+              <p><%= t.recursos.com2_desc %></p>
+            </div>
+          </div>
+          <div class="resource-item">
+            <div class="resource-icon">👥</div>
+            <div class="resource-info">
+              <h3><%= t.recursos.com3_title %></h3>
+              <p><%= t.recursos.com3_desc %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

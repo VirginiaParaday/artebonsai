@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arte Bonsái | <%= title %>
+  </title>
+  <link rel="icon" type="image/x-icon" href="images/Bonsai.ico" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Josefin+Sans:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@300;400;600&family=Roboto:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css" />
+
+<body class="<%= locals.pageClass || '' %>">
+  <nav class="navbar">
+    <div class="nav-container">
+
+      <!-- Logo (izquierda) -->
+      <a href="/" class="nav-logo">
+        <img src="/images/Logotipo.webp" alt="Arte Bonsái" class="logo-icon" />
+      </a>
+
+      <!-- Botón hamburguesa (mobile) -->
+      <button class="nav-toggle" id="navToggle" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Menú centrado -->
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="/" class="nav-link">
+            <%= t.nav.inicio %>
+          </a></li>
+        <li class="nav-item-tooltip">
+          <a href="/sobre-mi" class="nav-link">
+            <%= t.nav.sobreMi %>
+          </a>
+          <span class="nav-tooltip">
+            <%= t.nav.tooltip.sobreMi %>
+          </span>
+        </li>
+        <li class="nav-item-tooltip">
+          <a href="/galeria" class="nav-link">
+            <%= t.nav.galeria %>
+          </a>
+          <span class="nav-tooltip">
+            <%= t.nav.tooltip.galeria %>
+          </span>
+        </li>
+        <li class="nav-item-tooltip">
+          <a href="/guias" class="nav-link">
+            <%= t.nav.guias %>
+          </a>
+          <span class="nav-tooltip">
+            <%= t.nav.tooltip.guias %>
+          </span>
+        </li>
+        <li class="nav-item-tooltip">
+          <a href="/blog" class="nav-link">
+            <%= t.nav.blog %>
+          </a>
+          <span class="nav-tooltip">
+            <%= t.nav.tooltip.blog %>
+          </span>
+        </li>
+        <li class="nav-item-tooltip">
+          <a href="/recursos" class="nav-link">
+            <%= t.nav.recursos %>
+          </a>
+          <span class="nav-tooltip">
+            <%= t.nav.tooltip.recursos %>
+          </span>
+        </li>
+        <li class="nav-item-tooltip">
+          <a href="/califica" class="nav-link">
+            <%= t.nav.califica %>
+          </a>
+          <span class="nav-tooltip">
+            <%= t.nav.tooltip.califica %>
+          </span>
+        </li>
+        <li class="nav-item-tooltip">
+          <a href="/contacto" class="nav-link nav-link-cta">
+            <%= t.nav.contacto %>
+          </a>
+          <span class="nav-tooltip">
+            <%= t.nav.tooltip.contacto %>
+          </span>
+        </li>
+      </ul>
+
+      <!-- Controles derecha: Países + Idioma -->
+      <div class="nav-controls">
+
+        <!-- Selector de países -->
+        <%
+          var initIso = detectedCountry ? detectedCountry.countryIso : 'un';
+          var initCode = detectedCountry ? detectedCountry.countryCode : '';
+        %>
+        <div class="lang-selector" id="countrySelector">
+          <button class="lang-btn" id="countryBtn" aria-label="País">
+            <span id="countryFlag" class="fi fi-<%= initIso %>"></span>
+            <span id="countryCode" style="font-size:0.75rem; margin-left:2px"><%= initCode %></span>
+            <svg class="lang-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <ul class="lang-dropdown" id="countryDropdown">
+            <% countries.forEach(function(c) { %>
+              <li>
+                <a href="#" class="lang-option country-option" data-code="<%= c.code %>" data-iso="<%= c.iso %>">
+                  <span class="fi fi-<%= c.iso %>"></span>
+                  <span class="country-name">
+                    <%= c.name %>
+                  </span>
+                </a>
+              </li>
+              <% }); %>
+          </ul>
+        </div>
+
+        <!-- Selector de idioma -->
+        <div class="lang-selector" id="langSelector">
+          <button class="lang-btn" id="langBtn" aria-label="Idioma">
+            <span class="lang-flag"><%= lang.toUpperCase() %></span>
+            <svg class="lang-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <ul class="lang-dropdown" id="langDropdown">
+            <% supportedLangs.forEach(function(l) { %>
+              <li>
+                <a href="?lang=<%= l.code %>" class="lang-option <%= lang === l.code ? 'lang-option--active' : '' %>">
+                  <%= l.label %>
+                </a>
+              </li>
+              <% }); %>
+          </ul>
+        </div>
+
+      </div><!-- /nav-controls -->
+
+    </div>
+  </nav>
+
+  <main></main>
+</body>
+
+</html>
