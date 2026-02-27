@@ -1,28 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
-// Configurar transporte
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  tls: {
-    rejectUnauthorized: false
-  }
-});
-
-transporter.verify(function (error, success) {
-  if (error) {
-    console.log("❌ Error con SMTP:", error);
-  } else {
-    console.log("✅ Servidor listo para enviar correos");
-  }
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 router.get('/', (req, res) => {
   res.render('contacto', { title: 'Contacto' });
@@ -36,6 +16,7 @@ router.post('/', async (req, res) => {
   if (!nombre || nombre.trim().length < 2) {
     errors.nombre = 'El nombre debe tener al menos 2 caracteres.';
   }
+
   const enviarCopia = req.body.enviarCopia === 'si';
 
   if (enviarCopia && (!correo || correo.trim() === '')) {
@@ -46,6 +27,7 @@ router.post('/', async (req, res) => {
       errors.correo = 'El correo electrónico no tiene un formato válido.';
     }
   }
+
   if (!mensaje || mensaje.trim().length < 10) {
     errors.mensaje = 'El mensaje debe tener al menos 10 caracteres.';
   }
@@ -58,7 +40,6 @@ router.post('/', async (req, res) => {
     });
   }
 
-  // Enviar correo
   try {
     const htmlMensaje = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #d4edda; border-radius: 8px;">
@@ -72,11 +53,15 @@ router.post('/', async (req, res) => {
           </tr>
           <tr style="background: #f5f0e8;">
             <td style="padding: 10px; font-weight: bold; color: #5a3e1b;">Correo:</td>
-            <td style="padding: 10px; color: #333;">${correo && correo.trim() !== '' ? correo.trim() : 'No proporcionado'}</td>
+            <td style="padding: 10px; color: #333;">
+              ${correo && correo.trim() !== '' ? correo.trim() : 'No proporcionado'}
+            </td>
           </tr>
           <tr>
             <td style="padding: 10px; font-weight: bold; color: #5a3e1b; vertical-align: top;">Mensaje:</td>
-            <td style="padding: 10px; color: #333; line-height: 1.6;">${mensaje.trim().replace(/\n/g, '<br>')}</td>
+            <td style="padding: 10px; color: #333; line-height: 1.6;">
+              ${mensaje.trim().replace(/\n/g, '<br>')}
+            </td>
           </tr>
         </table>
         <p style="margin-top: 20px; font-size: 0.85rem; color: #999; text-align: center;">
@@ -85,27 +70,28 @@ router.post('/', async (req, res) => {
       </div>
     `;
 
-    // Enviar al administrador
-    await transporter.sendMail({
-      from: `"Arte Bonsái 🌿" <${process.env.EMAIL_USER}>`,
+    // 📩 Enviar correo al administrador
+    await resend.emails.send({
+      from: 'Arte Bonsái <onboarding@resend.dev>', // Cambiar cuando verifiques dominio
       to: process.env.EMAIL_USER,
-      replyTo: correo && correo.trim() !== '' ? correo.trim() : process.env.EMAIL_USER,
+      reply_to: correo && correo.trim() !== '' ? correo.trim() : process.env.EMAIL_USER,
       subject: `Nuevo mensaje de ${nombre.trim()} – Arte Bonsái`,
       html: htmlMensaje
     });
 
-    // Enviar copia al usuario si marcó el checkbox
+
+    // 📩 Enviar copia al usuario si marcó el checkbox
     if (enviarCopia && correo && correo.trim() !== '') {
-      await transporter.sendMail({
-        from: `"Arte Bonsái 🌿" <${process.env.EMAIL_USER}>`,
+      await resend.emails.send({
+        from: 'Arte Bonsái <onboarding@resend.dev>',
         to: correo.trim(),
         subject: `Copia de tu mensaje – Arte Bonsái`,
         html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #d4edda; border-radius: 8px;">
-            <h2 style="color: #2d6a3f; border-bottom: 2px solid #2d6a3f; padding-bottom: 10px;">
-              🌿 Copia de tu mensaje en Arte Bonsái
-            </h2>
-            <p style="color: #5a3e1b;">Hola <strong>${nombre.trim()}</strong>, aquí tienes una copia del mensaje que nos enviaste:</p>
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h2 style="color: #2d6a3f;">🌿 Copia de tu mensaje en Arte Bonsái</h2>
+            <p style="color: #5a3e1b;">
+              Hola <strong>${nombre.trim()}</strong>, aquí tienes una copia del mensaje que nos enviaste:
+            </p>
             ${htmlMensaje}
             <p style="margin-top: 20px; color: #2d6a3f; font-style: italic;">
               Gracias por contactarnos. Te responderemos pronto. 🌿
@@ -121,7 +107,8 @@ router.post('/', async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Error enviando correo:', error);
+    console.error('❌ Error enviando correo:', error);
+
     res.render('contacto', {
       title: 'Contacto',
       errors: { general: 'Hubo un error al enviar el mensaje. Intenta de nuevo.' },
