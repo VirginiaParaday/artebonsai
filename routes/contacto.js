@@ -72,7 +72,7 @@ router.post('/', async (req, res) => {
 
     // 📩 Enviar correo al administrador
     await resend.emails.send({
-      from: 'Arte Bonsái <contacto@imperiagroup.co>', // Cambiar cuando verifiques dominio
+      from: 'Arte Bonsái <contactenos@imperiagroup.co>', // Cambiar cuando verifiques dominio
       to: process.env.EMAIL_USER,
       reply_to: correo && correo.trim() !== '' ? correo.trim() : process.env.EMAIL_USER,
       subject: `Nuevo mensaje de ${nombre.trim()} – Arte Bonsái`,
@@ -83,7 +83,7 @@ router.post('/', async (req, res) => {
     // 📩 Enviar copia al usuario si marcó el checkbox
     if (enviarCopia && correo && correo.trim() !== '') {
       await resend.emails.send({
-        from: 'Arte Bonsái <contacto@imperiagroup.co>',
+        from: 'Arte Bonsái <contactenos@imperiagroup.co>',
         to: correo.trim(),
         subject: `Copia de tu mensaje – Arte Bonsái`,
         html: `
