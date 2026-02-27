@@ -16,6 +16,14 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+transporter.verify(function (error, success) {
+  if (error) {
+    console.log("❌ Error con SMTP:", error);
+  } else {
+    console.log("✅ Servidor listo para enviar correos");
+  }
+});
+
 router.get('/', (req, res) => {
   res.render('contacto', { title: 'Contacto' });
 });
