@@ -4,10 +4,15 @@ const nodemailer = require('nodemailer');
 
 // Configurar transporte
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
+    pass: process.env.EMAIL_PASS,
+  },
+  tls: {
+    rejectUnauthorized: false
   }
 });
 
@@ -23,7 +28,7 @@ router.post('/', async (req, res) => {
   if (!nombre || nombre.trim().length < 2) {
     errors.nombre = 'El nombre debe tener al menos 2 caracteres.';
   }
-const enviarCopia = req.body.enviarCopia === 'si';
+  const enviarCopia = req.body.enviarCopia === 'si';
 
   if (enviarCopia && (!correo || correo.trim() === '')) {
     errors.correo = 'El correo es obligatorio si deseas recibir una copia.';
@@ -47,7 +52,7 @@ const enviarCopia = req.body.enviarCopia === 'si';
 
   // Enviar correo
   try {
-  const htmlMensaje = `
+    const htmlMensaje = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #d4edda; border-radius: 8px;">
         <h2 style="color: #2d6a3f; border-bottom: 2px solid #2d6a3f; padding-bottom: 10px;">
           🌿 Nuevo mensaje desde Arte Bonsái
